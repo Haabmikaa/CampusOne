@@ -1,36 +1,40 @@
 # CampusOne: Staff Guide
 
-Welcome to the **CampusOne** Staff Portal. This guide is for administrative and service staff (Maintenance, Security, IT, etc.) to manage campus operations.
+Welcome to the **CampusOne** Staff Portal. This guide is for administrative and service staff such as maintenance, security, and support teams.
 
-## 📱 Application Flow
+## Application Flow
 
 ### 1. Staff Dashboard
-The home screen for staff provides a clear view of pending tasks and campus status.
+The dashboard gives staff a quick view of daily activity and work areas.
 
-![Staff Home](screenshots/staff/home.png)
-*   **Assigned Tasks**: A list of complaints or service requests assigned to you by the Admin.
-*   **Urgency Levels**: High-priority items are highlighted for immediate attention.
+![Staff Home](screenshots/staff/home.jpg)
+
+- **Assigned Tasks**: Highlights the service work that needs attention.
+- **Workspace Entry**: Gives direct access to schedule, complaints, announcements, and map tools.
 
 ### 2. Service & Complaint Management
-The core functionality for staff is resolving campus issues.
+This is the main operational page for following and resolving assigned issues.
 
-![Staff Complaints](screenshots/staff/complaints.png)
-*   **Task Details**: View the location, description, and images of the reported issue.
-*   **Update Status**: Change the status from "Assigned" to "In Progress" and finally "Resolved".
-*   **Communication**: Leave comments for the admin or the reporter regarding the progress.
+![Staff Complaints](screenshots/staff/complaints.jpg)
+
+- **Task Details**: Shows the problem description, location, and related information.
+- **Progress Updates**: Helps staff move work from assigned to in progress and then resolved.
+- **Communication**: Supports status visibility for the wider system.
 
 ### 3. Campus Announcements
-Stay updated with general campus information that might affect your work.
+Staff can read campus-wide notices that affect services or operations.
 
-![Staff Announcements](screenshots/staff/announcements.png)
-*   **General News**: View notices about campus events or infrastructure changes.
+![Staff Announcements](screenshots/staff/announcements.jpg)
+
+- **General Updates**: Keeps staff aware of events, notices, and service-related communication.
 
 ### 4. Profile Management
-Manage your professional details.
+Staff members use the profile area to maintain account and identity details.
 
-![Staff Profile](screenshots/staff/profile.png)
-*   **Role Info**: Displays your specific staff category (e.g., "Maintenance").
-*   **Notifications**: Set alerts for new task assignments.
+![Staff Profile](screenshots/staff/profile.jpg)
+
+- **Role Info**: Reflects the staff category or department.
+- **Notifications**: Helps staff stay aware of new assignments and updates.
 
 ---
-*Note: Please replace the placeholder images in the `screenshots/staff/` directory with actual screenshots from the app.*
+Screenshots for this guide are stored in `screenshots/staff/`.

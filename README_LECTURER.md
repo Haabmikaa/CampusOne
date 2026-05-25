@@ -1,45 +1,56 @@
 # CampusOne: Lecturer Guide
 
-Welcome to the **CampusOne** Lecturer Portal. This guide explains how to manage your courses, assignments, and interact with students.
+Welcome to the **CampusOne** Lecturer Portal. This guide explains how lecturers manage courses, assignments, announcements, and student follow-up inside the app.
 
-## 📱 Application Flow
+## Application Flow
 
 ### 1. Lecturer Dashboard
-Upon logging in as a Lecturer, you are directed to a specialized home screen designed for academic management.
+After login, lecturers land on a dedicated dashboard that summarizes teaching activity and provides quick access to academic tools.
 
-![Lecturer Home](screenshots/lecturer/home.png)
-*   **Active Courses**: View a summary of the courses you are currently teaching.
-*   **Pending Submissions**: See how many students have submitted assignments that need review.
-*   **Quick Actions**: Easily create new assignments or post announcements.
+![Lecturer Dashboard](screenshots/lecturer/dashboard-main.jpg)
+![Lecturer Stats](screenshots/lecturer/dashboard-stats.jpg)
+
+- **Dashboard Overview**: Shows a welcome area and lecturer-specific workspace entry point.
+- **Quick Stats**: Summarizes active courses and teaching activity.
+- **Quick Actions**: Helps lecturers jump into tasks faster.
 
 ### 2. Workspace Management
-The Workspace is your primary tool for delivering course content.
+The workspace is the core academic area for managing courses and learning materials.
 
-![Workspace Management](screenshots/lecturer/workspace.png)
-*   **Course Creation**: Setup course modules with descriptions and resources.
-*   **Assignment Creation**: Set deadlines, attach instructions, and specify target sections/groups.
-*   **Submission Review**: View a list of student submissions, download files, and track participation.
+![Workspace Overview](screenshots/lecturer/workspace-overview.jpg)
+![Course Management](screenshots/lecturer/course-management.jpg)
+![Assignment Management](screenshots/lecturer/assignment-management.jpg)
+![Submissions](screenshots/lecturer/submissions.jpg)
+
+- **Workspace Overview**: Lists the lecturer's assigned courses.
+- **Course Management**: Opens a course and lets the lecturer organize materials.
+- **Assignment Management**: Supports creating and managing coursework for sections and groups.
+- **Submissions**: Lets the lecturer review student uploads and track progress.
 
 ### 3. Announcements & Communication
-Broadcast important information to your students.
+Lecturers can send academic communication and stay updated with relevant alerts.
 
-![Lecturer Announcements](screenshots/lecturer/announcements.png)
-*   **Post Updates**: Share lecture notes, change of venues, or exam tips.
-*   **Targeted Messaging**: Ensure your updates reach the right student cohorts.
+![Lecturer Announcements](screenshots/lecturer/announcements.jpg)
+![Lecturer Notifications](screenshots/lecturer/notifications.jpg)
+
+- **Announcements**: Shares lecture updates, resources, and important reminders.
+- **Notifications**: Keeps lecturers informed about actions that need attention.
 
 ### 4. Complaint Handling
-Address academic concerns raised by students.
+Lecturers can review student complaints related to academic concerns and respond where needed.
 
-![Lecturer Complaints](screenshots/lecturer/complaints.png)
-*   **Academic Issues**: View complaints related to grading, course materials, or scheduling.
-*   **Direct Response**: Provide feedback or resolve issues directly through the app.
+![Lecturer Complaints](screenshots/lecturer/complaints.jpg)
 
-### 5. Profile & Settings
-Manage your professional profile.
+- **Academic Issues**: Covers grading, class scheduling, and course-related concerns.
+- **Follow-up**: Supports direct response and resolution tracking.
 
-![Lecturer Profile](screenshots/lecturer/profile.png)
-*   **Department Info**: Ensure your department and contact details are up to date.
-*   **Notification Settings**: Customize how you receive alerts for new submissions or messages.
+### 5. Profile & Account
+Lecturers maintain their professional identity and account information here.
+
+![Lecturer Profile](screenshots/lecturer/profile.jpg)
+
+- **Profile Details**: Shows lecturer information such as department and identity data.
+- **Account Flow**: Keeps the lecturer's app presence complete and current.
 
 ---
-*Note: Please replace the placeholder images in the `screenshots/lecturer/` directory with actual screenshots from the app.*
+Screenshots for this guide are stored in `screenshots/lecturer/`.
