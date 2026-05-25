@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --card: #161616;
+  --card-foreground: #FFFFFF;
+  --primary: #D4AF37;
+  --primary-foreground: #0A0A0A;
+  --muted: #1E1E1E;
+  --muted-foreground: #F3F4F6;
+  --border: #2A2A2A;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  @apply selection:bg-amber-500 selection:text-white overflow-x-hidden;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.03) 0px, transparent 50%);
+}
+
+@layer components {
+  .premium-card {
+    @apply bg-[#161616] border border-[#2A2A2A] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-500 hover:border-[#D4AF37]/30 hover:shadow-[0_20px_60px_rgba(212,175,55,0.05)];
+  }
+  
+  .glass-panel {
+    @apply bg-[#161616]/90 backdrop-blur-3xl border border-[#2A2A2A] shadow-2xl;
+  }
+  
+  .active-nav-item {
+    @apply bg-[#D4AF37] text-[#0A0A0A] shadow-[0_10px_25px_rgba(212,175,55,0.2)];
+  }
+  
+  .nav-item {
+    @apply flex items-center gap-4 px-6 py-4 rounded-2xl text-[#f3f4f6]/60 hover:text-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 cursor-pointer;
+  }
+
+  .terminal-input {
+    @apply bg-[#0A0A0A] border border-[#2A2A2A] rounded-2xl px-6 py-4 text-white focus:ring-2 focus:ring-[#D4AF37]/30 focus:border-[#D4AF37] outline-none transition-all placeholder:text-stone-700 font-medium;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full hover:bg-slate-700;
+}
+
+/* Professional Number Inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,16 @@
+# Firebase App Hosting configuration
+# See https://firebase.google.com/docs/app-hosting/configure
+
+kind: "AppStack"
+apiVersion: "v1"
+
+runConfig:
+  minInstances: 0
+  maxInstances: 10
+  memory: "512MiB"
+
+# Note: Since your Firebase config is hardcoded in src/lib/firebase.ts, 
+# you don't need environment variables here yet.
+# env:
+#   - variable: NEXT_PUBLIC_API_KEY
+#     value: "your-api-key"

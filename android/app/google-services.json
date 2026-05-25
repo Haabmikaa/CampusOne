@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "227672399363",
+    "project_id": "compusone",
+    "storage_bucket": "compusone.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227672399363:android:526c232cf492a82a457836",
+        "android_client_info": {
+          "package_name": "com.campusone.campus_one"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227672399363-9abe1me05k9na59be9ejqc3kr67ask95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.campusone.campus_one",
+            "certificate_hash": "66f3418566522ab826ca7bd6490509eeb9af422c"
+          }
+        },
+        {
+          "client_id": "227672399363-7tb9jbpi595p7ckl3pj30d0h42msbq31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0KFHF1X9ba4WEmWmz9bXIPlDKfKXJgBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227672399363-7tb9jbpi595p7ckl3pj30d0h42msbq31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,149 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─────────────────────────────────────────────────────────────────
+    // Reusable Functions for RBAC (Role-Based Access Control)
+    // ─────────────────────────────────────────────────────────────────
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isUserActive() {
+      // Temporarily allowing all authenticated users to be considered "active" 
+      // until the admin approval flow is fully automated.
+      return isAuthenticated();
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' 
+        || request.auth.token.email.matches('.*admin.*')
+      );
+    }
+
+    function isStaff() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'staff';
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Users Collection
+    // ─────────────────────────────────────────────────────────────────
+    match /users/{userId} {
+      // Anyone authenticated can read user profiles (needed for directory/names)
+      allow read: if isAuthenticated();
+      
+      // Users can only update their own cohort and FCM token. They CANNOT change their role.
+      allow update: if request.auth.uid == userId 
+                    && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'isActive', 'email', 'uid']));
+      
+      allow create: if request.auth.uid == userId; // Allow user registration
+      allow write: if isAdmin();
+      
+      // Nested Notifications
+      match /notifications/{notifId} {
+        allow read, update: if request.auth.uid == userId;
+        allow create, delete: if isAdmin() || isStaff();
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Exam Schedules Collection (Complex Batch Schedules)
+    // ─────────────────────────────────────────────────────────────────
+    match /exam_schedules/{scheduleId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Schedules Collection (Old Master Schedule)
+    // ─────────────────────────────────────────────────────────────────
+    match /schedules/{scheduleId} {
+      // Anyone can read schedules (they filter by cohort on the client)
+      allow read: if isAuthenticated();
+      
+      // Teachers can update status messages on schedules they own
+      allow update: if isStaff() 
+                    && resource.data.instructorId == request.auth.uid
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['statusMessage', 'statusExpiresAt']);
+                    
+      // Admins control the master schedule
+      allow write: if isAdmin();
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Complaints Collection
+    // ─────────────────────────────────────────────────────────────────
+    match /complaints/{complaintId} {
+      // Students can read/create their own complaints
+      allow create: if isAuthenticated() && request.resource.data.studentId == request.auth.uid;
+      allow read: if isAuthenticated() && (resource.data.studentId == request.auth.uid || isStaff() || isAdmin());
+      
+      // Staff can ONLY update the status field of a complaint
+      allow update: if isStaff() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt']);
+      
+      allow write: if isAdmin();
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Academic Workspace: Courses
+    // ─────────────────────────────────────────────────────────────────
+    match /courses/{courseId} {
+      // Students and Staff can read courses
+      allow read: if isAuthenticated();
+      
+      // Only Admins create/delete courses
+      allow write: if isAdmin();
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Academic Workspace: Assignments
+    // ─────────────────────────────────────────────────────────────────
+    match /assignments/{assignmentId} {
+      allow read: if isAuthenticated();
+      
+      // The instructor of the course can manage assignments
+      allow write: if isStaff() && get(/databases/$(database)/documents/courses/$(request.resource.data.courseId)).data.instructorId == request.auth.uid;
+      allow write: if isAdmin();
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // Academic Workspace: Submissions (Strictly Private)
+    // ─────────────────────────────────────────────────────────────────
+    match /submissions/{submissionId} {
+      // Students can read their own submissions. 
+      // Instructors can read submissions for their assignments.
+      allow read: if isAuthenticated() && (
+        resource.data.studentId == request.auth.uid || 
+        (isStaff() && get(/databases/$(database)/documents/courses/$(get(/databases/$(database)/documents/assignments/$(resource.data.assignmentId)).data.courseId)).data.instructorId == request.auth.uid)
+      );
+
+      // Students create their own submissions
+      allow create: if isAuthenticated() && request.resource.data.studentId == request.auth.uid;
+      
+      // Students can update their submissions (if not graded)
+      // Instructors can update the grade/feedback
+      allow update: if isAuthenticated() && (
+        (resource.data.studentId == request.auth.uid && !('grade' in resource.data)) ||
+        (isStaff() && get(/databases/$(database)/documents/courses/$(get(/databases/$(database)/documents/assignments/$(resource.data.assignmentId)).data.courseId)).data.instructorId == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['grade', 'feedback', 'gradedAt']))
+      );
+      
+      allow write: if isAdmin();
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    // General Collections
+    // ─────────────────────────────────────────────────────────────────
+    match /announcements/{document=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin() || isStaff();
+    }
+    
+    match /staff/{document=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+  }
+}
